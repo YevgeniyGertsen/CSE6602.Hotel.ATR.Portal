@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="~/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
     <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    @RenderSection("styles", false)
 </head>
 <body>
     <!-- Header Area Start -->
@@ -286,5 +288,7 @@
     <script src="~/js/jquery.magnific-popup.js"></script>
     <script src="~/js/plugins.js"></script>
     <script src="~/js/main.js"></script>
+
+    @RenderSection("script", false)
 </body>
 </html>
