@@ -17,5 +17,10 @@ namespace Hotel.ATR.Portal.Controllers
         {
             return View();
         }
+
+        public IActionResult RoomDetails()
+        {
+            return View();
+        }
     }
 }
