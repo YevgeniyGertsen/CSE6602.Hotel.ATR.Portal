@@ -12,20 +12,30 @@ namespace Hotel.ATR.Portal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepository repo)
         {
             _logger = logger;
+            _repo = repo;
         }
 
 
         public IActionResult AboutUs()
         {
-            return View();
+            var data = _repo.Products();
+            return View(data);
         }
 
         public IActionResult Index()
         {
+            _logger.LogInformation("testInfo");
+            _logger.LogError("testInfo");
+
+            string email = "ok@ok.kz";
+            _logger.LogWarning("testInfo: {email} - {logTime}", 
+                email , DateTime.Now);
+
             return View();
         }
 

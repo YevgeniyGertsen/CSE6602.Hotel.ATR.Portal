@@ -1,8 +1,10 @@
+using Hotel.ATR.Portal.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,13 @@ namespace Hotel.ATR.Portal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            Log.Logger = new LoggerConfiguration()
+               .WriteTo.Seq("http://localhost:5341/")
+               .CreateLogger();
+
+            services.AddSingleton<Serilog.ILogger>(Log.Logger);
+
+            services.AddTransient<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

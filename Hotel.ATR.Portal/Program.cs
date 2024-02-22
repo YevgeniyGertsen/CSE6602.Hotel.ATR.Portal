@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,20 @@ namespace Hotel.ATR.Portal
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .UseSerilog()
+            //.ConfigureLogging(logBuilder =>
+            //{
+            //    logBuilder.ClearProviders();
+            //    //logBuilder.AddDebug()
+            //    //.AddEventLog()
+            //    //.AddConsole();
+
+            //    //logBuilder.AddSeq();
+
+               
+                
+               
+            //})
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
