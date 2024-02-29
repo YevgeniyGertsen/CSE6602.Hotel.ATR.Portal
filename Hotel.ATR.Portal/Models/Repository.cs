@@ -14,11 +14,11 @@ namespace Hotel.ATR.Portal.Models
         {
             products = new Dictionary<string, Product>();
 
-            products.Add("", new Product { Name = "Women Shoes", Price = 99M });
+            products.Add("1", new Product { Name = "Women Shoes", Price = 99M });
 
-            products.Add("", new Product { Name = "Skirts", Price = 29.99M });
+            products.Add("2", new Product { Name = "Skirts", Price = 29.99M });
 
-            products.Add("", new Product { Name = "Pants", Price = 40.5M });
+            products.Add("3", new Product { Name = "Pants", Price = 40.5M });
         }
 
         public List<Product> Products()

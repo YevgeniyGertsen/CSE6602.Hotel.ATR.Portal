@@ -1,8 +1,16 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@{
     Layout = "_HomeLayout";
+    var cultureList = locOptions.Value.SupportedUICultures;
 }
-
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContext
+@inject IOptions<RequestLocalizationOptions> locOptions
+@inject IViewLocalizer _lang
 
 
 <!-- About Us Area Start -->
@@ -80,8 +88,22 @@
             <div class="col-md-5">
                 <div class="about-text">
                     <div class="section-title">
-                        <h3>about us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utjij enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utjjij aliquip ex ea commodo consequat.</p>
+                        <h3>@_lang["aboutus"] @User.Identity.Name - @ViewBag.Culture</h3>
+
+                        <form asp-action="Index" id="cultureForm">
+                            <label>Language: </label>
+                            <select onchange="SetCulture(this.value);">
+                                <option selected value="">Выберете язык</option>
+
+                                @foreach (CultureInfo item in cultureList)
+                                {
+                                    <option value="@item.Name">@item.Name | @item.DisplayName</option>
+                                }
+                            </select>
+                        </form>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utjij enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utjjij aliquip ex ea commodo consequat.
+                        </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
                         <p>Fipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
                     </div>
@@ -98,3 +120,15 @@
     </div>
 </section>
 <!-- About Us Area End -->
+
+@section script
+{
+    <script>
+        function SetCulture(selectedCulture)
+        {
+            var culture = "/?culture=" + selectedCulture + "&cultureIU=" + selectedCulture;
+            document.getElementById("cultureForm").action = culture;
+            document.getElementById("cultureForm").submit();
+        }
+    </script>
+}
