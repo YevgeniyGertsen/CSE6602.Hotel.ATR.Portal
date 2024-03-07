@@ -12,7 +12,6 @@
 @inject IOptions<RequestLocalizationOptions> locOptions
 @inject IViewLocalizer _lang
 
-
 <!-- About Us Area Start -->
 <section class="about-area">
     <div class="container">
@@ -88,8 +87,13 @@
             <div class="col-md-5">
                 <div class="about-text">
                     <div class="section-title">
-                        <h3>@_lang["aboutus"] @User.Identity.Name - @ViewBag.Culture</h3>
+                        <h3>
+                            @_lang["aboutus"]
 
+                            <br /><br />
+                            @User.Identity.Name - @ViewBag.Culture
+                        </h3>
+                        <br /><br />
                         <form asp-action="Index" id="cultureForm">
                             <label>Language: </label>
                             <select onchange="SetCulture(this.value);">
@@ -101,31 +105,32 @@
                                 }
                             </select>
                         </form>
+
+                        <br /><br />
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utjij enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utjjij aliquip ex ea commodo consequat.
                         </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
                         <p>Fipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
                     </div>
-                    <div class="about-links">
-                        <a href="https://www.facebook.com/"><i class="zmdi zmdi-facebook"></i></a>
-                        <a href="https://www.instagram.com/"><i class="zmdi zmdi-instagram"></i></a>
-                        <a href="https://www.rss.com/"><i class="zmdi zmdi-rss"></i></a>
-                        <a href="https://twitter.com/"><i class="zmdi zmdi-twitter"></i></a>
-                        <a href="https://www.pinterest.com/"><i class="zmdi zmdi-pinterest"></i></a>
-                    </div>
+                <div class="about-links">
+                    <a href="https://www.facebook.com/"><i class="zmdi zmdi-facebook"></i></a>
+                    <a href="https://www.instagram.com/"><i class="zmdi zmdi-instagram"></i></a>
+                    <a href="https://www.rss.com/"><i class="zmdi zmdi-rss"></i></a>
+                    <a href="https://twitter.com/"><i class="zmdi zmdi-twitter"></i></a>
+                    <a href="https://www.pinterest.com/"><i class="zmdi zmdi-pinterest"></i></a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 <!-- About Us Area End -->
 
 @section script
 {
     <script>
-        function SetCulture(selectedCulture)
-        {
+        function SetCulture(selectedCulture) {
             var culture = "/?culture=" + selectedCulture + "&cultureIU=" + selectedCulture;
             document.getElementById("cultureForm").action = culture;
             document.getElementById("cultureForm").submit();
